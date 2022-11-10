@@ -1,0 +1,31 @@
+/***************************************************************/                                       
+/*    NAME: Michael DeFilippo and Supun Randeni                */                                       
+/*    ORGN: Dept of Mechanical Engineering, MIT, Cambridge MA  */                                       
+/*    FILE: protobuf_client.c++                                */                                       
+/*    DATE: 2022-11-08                                         */
+/*    NOTE: Node to connect to MOOS gateway and share data     */
+/*          via a generic protobuf message                     */
+/*                                                             */
+/* This is unreleased BETA code. no permission is granted or   */                                       
+/* implied to use, copy, modify, and distribute this software  */                                       
+/* except by the author(s), or those designated by the author. */                                       
+/***************************************************************/
+
+
+#include <ros/ros.h>
+#include <ros/console.h>
+
+using namespace std;
+
+#define __APP_NAME__ "protobuf_client"
+
+int main(int argc, char **argv)
+{
+  // Init ROS
+  ros::init (argc, argv, __APP_NAME__);
+  ros::NodeHandle nh;
+  ros::NodeHandle private_nh("~");
+
+  //Spin
+  ros::spin();
+}
