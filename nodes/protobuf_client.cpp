@@ -61,6 +61,20 @@ void ProtobufClient::ConnectToGateway()
     }
   }
   ROS_INFO("Connected to gateway");
+
+  // Send kickoff message to gateway
+  moos::gateway::ToGateway msg;
+  ros::Time time = ros::Time::now();
+  msg.set_client_time(time.toSec());
+  msg.set_client_key("NAV_X");
+  msg.set_client_double(0.0);
+  msg.set_client_string(" ");
+
+  if (client_->connected())
+  {
+    ROS_INFO("Sending kickoff msg: %s", msg.ShortDebugString().c_str());
+    client_->write(msg);
+  }
 }
 
 void ProtobufClient::IngestGatewayMsg()
