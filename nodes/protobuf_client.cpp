@@ -29,7 +29,7 @@ void ProtobufClient::ToGatewayCallback(const protobuf_client::Gateway &msg)
   to_gateway.set_client_string(msg.gateway_string);
   to_gateway.set_client_double(msg.gateway_double);
   
-  ROS_INFO("Client Key: %s", msg.gateway_key.c_str());
+  //ROS_INFO("Client Key: %s", msg.gateway_key.c_str());
     
   // send to MOOS
   if(client_->connected())
@@ -118,13 +118,44 @@ void ProtobufClient::InitRosIO(ros::NodeHandle &in_private_nh)
   pub_gateway_msg_ = nh_.advertise<protobuf_client::Gateway>("/gateway_msg", 1000);
 }
 
+void ProtobufClient::Iterate()
+{
+  // Maintaining the TCP connection
+  if (client_->connected()){
+    io_.poll();
+  }
+  else {
+    ROS_INFO("Disconnected from Gateway...");
+    // Try to reconnect
+    client_->connect(gateway_ip_, gateway_port_);
+    try                                                                                             
+    {                                                                                                   
+      io_.poll();                                                                                       
+    }                                                                                                   
+    catch(boost::system::error_code & ec)                                                               
+    {                                                                                                   
+      ROS_INFO("Looping until connected to gateway. Error ");                                         
+      std::cout << ec << std::endl;                                                                   
+    }
+  }
+}
+
 void ProtobufClient::Run()
 {
   ros::NodeHandle private_nh("~");
 
   InitRosIO(private_nh);
 
-  ros::spin();
+  ros::Rate loop_rate(10);  // add var for loop_rate
+
+  while (ros::ok())
+  {
+    Iterate();
+    ros::spinOnce();
+    loop_rate.sleep();
+  }
+
+  
 }
 
 ProtobufClient::~ProtobufClient()

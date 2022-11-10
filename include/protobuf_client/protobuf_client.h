@@ -41,6 +41,11 @@ class ProtobufClient
    * @brief Ingests msg from gateway and publishes as a custom Gateway ROS msg
    **/
 
+  void Iterate();
+  /**
+   * @brief Loop continuously through the Iterate function at the desired rate
+   **/
+
   void InitRosIO(ros::NodeHandle &in_private_nh);
   /**
    * @brief callback to inititialize parameters 
