@@ -66,7 +66,7 @@ void ProtobufClient::ConnectToGateway()
   moos::gateway::ToGateway msg;
   ros::Time time = ros::Time::now();
   msg.set_client_time(time.toSec());
-  msg.set_client_key("NAV_X");
+  msg.set_client_key("NAV_TEST");
   msg.set_client_double(0.0);
   msg.set_client_string(" ");
 

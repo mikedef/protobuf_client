@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <node pkg="protobuf_client" type="protobuf_client"
+	name="protobuf_client" output="screen" />
+
+
+</launch>

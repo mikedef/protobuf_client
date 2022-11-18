@@ -1,4 +1,8 @@
-#!/usr/bin/env python3                                                                                   
+#!/usr/bin/env python3
+
+# Test app to publish test data to gateway
+
+
 import rospy
 from protobuf_client.msg import Gateway
 
