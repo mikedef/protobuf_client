@@ -44,6 +44,7 @@ message ("Found MOOSGateway in ${MOOSGATEWAY_INC_DIR}")
 
 ## Build 
 include_directories(include include/protobuf_client ${catkin_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS} ${PROTOBUF_INCLUDE_DIRS})
+# lib/proto is a directory to store the raw gateway.proto msg
 protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS include/protobuf_client/ lib/proto/gateway.proto)
 # NOTE: need to fix proto generation so it builds to correct directory
 # Had to copy in the .pb.h .pb.c files into my include from build/protobuf_client/ 
