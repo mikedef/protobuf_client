@@ -8,3 +8,6 @@ ROS node that serves as a bridge to MOOS-IvP through a predefined Google Protobu
   * Had to copy in the .pb.h .pb.c files into my include from build/protobuf_client/
 
 * Add tcp_client to build and unlink dependency on moos-ivp-gateway
+
+* Cleanup protobuf_client.h
+  * Remove includes that are no longer needed
