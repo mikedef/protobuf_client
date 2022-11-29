@@ -6,7 +6,7 @@ When `protobuf_client` receiveds key-value pairs defined in the MOOS-IvP Gateway
 
 The `protobuf_client` is set to automatically forward any messages posted to the `/send_to_gateway` topic. This topics data type is of the custom Gateway.msg ROS type.
 
-* Please see Gateway.msg for more information into the gateway_msg topic custom data type.
+* Please see Gateway.msg for more information into the `/gateway_msg` and `/send_to_gateway` topics custom data type.
 
 
 
