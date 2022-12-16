@@ -33,11 +33,11 @@ catkin_package()
 
 message("Checking: $ENV{HOME}")
 #IF( EXISTS $ENV{HOME}/moos-ivp-gateway)
-IF( EXISTS $ENV{HOME}/moos-ivp-gazebo)
+IF( EXISTS $ENV{HOME}/moos-ivp-champ)
 
 # Specify where to find MITFrontseat's headers and libraries...
-get_filename_component(MOOSGATEWAY_INC_DIR $ENV{HOME}/moos-ivp-gazebo/include ABSOLUTE)
-get_filename_component(MOOSGATEWAY_LIB_DIR $ENV{HOME}/moos-ivp-gazebo/lib ABSOLUTE)
+get_filename_component(MOOSGATEWAY_INC_DIR $ENV{HOME}/moos-ivp-champ/include ABSOLUTE)
+get_filename_component(MOOSGATEWAY_LIB_DIR $ENV{HOME}/moos-ivp-champ/lib ABSOLUTE)
 include_directories(${MOOSGATEWAY_INC_DIR})
 LINK_DIRECTORIES(${MOOSGATEWAY_LIB_DIR})
 message ("Found MOOSGateway in ${MOOSGATEWAY_INC_DIR}")
