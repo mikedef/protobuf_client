@@ -29,7 +29,7 @@ void ProtobufClient::ToGatewayCallback(const protobuf_client::Gateway &msg)
   to_gateway.set_client_string(msg.gateway_string);
   to_gateway.set_client_double(msg.gateway_double);
   
-  ROS_INFO("Client Key: %s", msg.gateway_key.c_str());
+  //ROS_INFO("Client Key: %s", msg.gateway_key.c_str());
     
   // send to MOOS
   if(client_->connected())
@@ -92,7 +92,7 @@ void ProtobufClient::IngestGatewayMsg()
 	gateway_msg.gateway_double = msg.gateway_double();
 	// Publish Gateway msg
 	pub_gateway_msg_.publish(gateway_msg);
-	//ROS_INFO("Received Gateway Key: %s", gateway_msg.gateway_key.c_str());
+	ROS_INFO("Received Gateway Key: %s", gateway_msg.gateway_key.c_str());
       });
 }
 
@@ -151,7 +151,7 @@ void ProtobufClient::Run()
   while (ros::ok())
   {
     Iterate();
-    ros::spin();
+    ros::spinOnce();
     loop_rate.sleep();
   }
 
