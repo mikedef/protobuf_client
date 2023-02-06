@@ -146,7 +146,7 @@ void ProtobufClient::Run()
 
   InitRosIO(private_nh);
 
-  ros::Rate loop_rate(20);  // add var for loop_rate
+  ros::Rate loop_rate(40);  // add var for loop_rate
 
   while (ros::ok())
   {
