@@ -112,7 +112,7 @@ void ProtobufClient::InitRosIO(ros::NodeHandle &in_private_nh)
   IngestGatewayMsg();
   
   // init subscriptions
-  sub_to_gateway_ = nh_.subscribe("/send_to_gateway", 1, &ProtobufClient::ToGatewayCallback, this);
+  sub_to_gateway_ = nh_.subscribe("/send_to_gateway", 100, &ProtobufClient::ToGatewayCallback, this);
 
   // init publishers
   pub_gateway_msg_ = nh_.advertise<protobuf_client::Gateway>("/gateway_msg", 1000);
