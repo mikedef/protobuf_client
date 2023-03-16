@@ -1,5 +1,5 @@
 /***************************************************************/                                       
-/*    NAME: Michael DeFilippo and Supun Randeni                */                                       
+/*    NAME: Michael DeFilippo and Dr. Supun Randeni            */                                       
 /*    ORGN: Dept of Mechanical Engineering, MIT, Cambridge MA  */                                       
 /*    FILE: protobuf_client.cpp                                */                                       
 /*    DATE: 2022-11-08                                         */
@@ -99,11 +99,13 @@ void ProtobufClient::IngestGatewayMsg()
 void ProtobufClient::InitRosIO(ros::NodeHandle &in_private_nh)
 {
   // init params
-  gateway_port_ = 1024;
-  // TODO: Add to launch and add check for param that goes to a default if not set
+  in_private_nh.param("gateway_port", gateway_port_, 1024);
   ROS_INFO("[%s] gateway_port: %d", __APP_NAME__, gateway_port_);
-  gateway_ip_ = "127.0.0.1"; // TODO: Add to launch and a check for IP
+  //gateway_ip_ = "127.0.0.1"; // 
+  in_private_nh.param<std::string>("gateway_ip", gateway_ip_, "127.0.0.1");
   ROS_INFO("[%s] gateway IP: %s", __APP_NAME__, gateway_ip_.c_str());
+  in_private_nh.param<std::string>("send_to_gateway_topic", send_to_gateway_, "/send_to_gateway");
+  ROS_INFO("[%s] subscription topic: %s", __APP_NAME__, send_to_gateway_.c_str());
 
   // Connecting to iMOOSGateway
   ConnectToGateway();
@@ -112,7 +114,8 @@ void ProtobufClient::InitRosIO(ros::NodeHandle &in_private_nh)
   IngestGatewayMsg();
   
   // init subscriptions
-  sub_to_gateway_ = nh_.subscribe("/send_to_gateway", 100, &ProtobufClient::ToGatewayCallback, this);
+  //sub_to_gateway_ = nh_.subscribe("/send_to_gateway", 100, &ProtobufClient::ToGatewayCallback, this);
+  sub_to_gateway_ = nh_.subscribe(send_to_gateway_, 100, &ProtobufClient::ToGatewayCallback, this);
 
   // init publishers
   pub_gateway_msg_ = nh_.advertise<protobuf_client::Gateway>("/gateway_msg", 1000);
