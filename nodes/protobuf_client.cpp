@@ -29,7 +29,7 @@ void ProtobufClient::ToGatewayCallback(const protobuf_client::Gateway &msg)
   to_gateway.set_client_string(msg.gateway_string);
   to_gateway.set_client_double(msg.gateway_double);
   
-  ROS_INFO("Client Key: %s", msg.gateway_key.c_str());
+  //ROS_INFO("Client Key: %s", msg.gateway_key.c_str());
     
   // send to MOOS
   if(client_->connected())
