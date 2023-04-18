@@ -11,11 +11,11 @@ The `protobuf_client` is set to automatically forward any messages posted to the
 ##
 Params: Please change params as needed
 * `gateway_port`: default="9502"
-** Port number of MOOS Gateway
+  * Port number of MOOS Gateway
 * `gateway_ip`:   default="127.0.0.1"
-** IP address of MOOS Gateway
+  * IP address of MOOS Gateway
 * `send_to_gateway_topic`: default="/send_to_gateway_cora"
-** Subscribe to this topic to send data to MOOS
+  * Subscribe to this topic to send data to MOOS
 
 
 
