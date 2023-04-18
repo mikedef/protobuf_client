@@ -17,7 +17,7 @@ The `protobuf_client` is set to automatically forward any messages posted to the
 * `/gateway_msg` (msg/Gateway)
 Received data from MOOS Gateway is published to this topic
 
-### Params: Please change params as needed
+### ROS Parameters
 * `gateway_port`: default="9502"
   * Port number of MOOS Gateway
 * `gateway_ip`:   default="127.0.0.1"
@@ -27,7 +27,7 @@ Received data from MOOS Gateway is published to this topic
 
 
 
-#### Notes:
+#### TODO:
 * Need to fix proto generation so it builds to correct directory
   * Had to copy in the .pb.h .pb.c files into my include from build/protobuf_client/
 
