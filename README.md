@@ -16,7 +16,3 @@ The `protobuf_client` is set to automatically forward any messages posted to the
 * Need to fix proto generation so it builds to correct directory
   * Had to copy in the .pb.h .pb.c files into my include from build/protobuf_client/
 
-* Add tcp_client to build and unlink dependency on moos-ivp-gateway
-
-* Cleanup protobuf_client.h
-  * Remove includes that are no longer needed

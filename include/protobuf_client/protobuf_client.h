@@ -11,9 +11,7 @@
 // Protobuf
 #include "gateway.pb.h"
 // Gateway Includes
-#include "lib_gateway_tcp/tcp_client.h"       // Bring into ws so I don't have to link to MOOS lib      
-#include "util/protobuf_support_for_moos.h"   // Eliminate? Don't need to serialize? 
-#include "lib_gateway_protobuf/gateway.pb.h"  // Eliminate? Already set up proto through catkin
+#include "tcp_client.h"
 
 class ProtobufClient
 {
