@@ -30,4 +30,5 @@ Received data from MOOS Gateway is published to this topic
 #### TODO:
 * Need to fix proto generation so it builds to correct directory
   * Had to copy in the .pb.h .pb.c files into my include from build/protobuf_client/
+* Add param to publish to custom received from gateway topic and not the static /gateway_msg
 

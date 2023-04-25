@@ -14,7 +14,7 @@ targ_*
 LOG_*/
 bin/
 build/
-lib/
+
 
 #ROS related
 *settings.yaml
