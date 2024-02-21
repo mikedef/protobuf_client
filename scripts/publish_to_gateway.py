@@ -1,5 +1,17 @@
 #!/usr/bin/env python3
+"""
+    NAME: Michael DeFilippo
+    ORGN: Dept of Mechanical Engineering, MIT, Cambridge MA
+    FILE: publish_to_gateway.py
+    DATE: 2023-01-03
+    NOTE: Node to parse contact vessel topics into a node report for MOOS
+          consumption
 
+   Copyright MIT and author/s of software.
+   This is unreleased BETA code. No permission is granted or
+   implied to use, copy, modify, and distribute this software
+   except by the author(s), or those designated by the author.
+"""
 # Test app to publish test data to gateway
 
 
@@ -22,15 +34,12 @@ def main():
     nav_x.gateway_time = rospy.Time.now()
     nav_x.gateway_key = 'NAV_X'
     nav_x.gateway_double = 0.0
-    
 
     nav_y = Gateway()
     nav_y.header.stamp = rospy.Time.now()
     nav_y.gateway_time = rospy.Time.now()
     nav_y.gateway_key = "NAV_Y"
     nav_y.gateway_double = 0.0
-
-    
 
     while not rospy.is_shutdown():
         pub_x.publish(nav_x)

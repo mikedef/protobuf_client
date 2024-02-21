@@ -1,14 +1,14 @@
-/***************************************************************/                                       
-/*    NAME: Michael DeFilippo and Dr. Supun Randeni            */                                       
-/*    ORGN: Dept of Mechanical Engineering, MIT, Cambridge MA  */                                       
-/*    FILE: protobuf_client.cpp                                */                                       
+/***************************************************************/
+/*    NAME: Michael DeFilippo and Dr. Supun Randeni            */
+/*    ORGN: Dept of Mechanical Engineering, MIT, Cambridge MA  */
+/*    FILE: protobuf_client.cpp                                */
 /*    DATE: 2022-11-08                                         */
 /*    NOTE: Node to connect to MOOS gateway and share data     */
 /*          via a generic protobuf message                     */
-/*                                                             */
-/* This is unreleased BETA code. no permission is granted or   */                                       
-/* implied to use, copy, modify, and distribute this software  */                                       
-/* except by the author(s), or those designated by the author. */                                       
+/* Copyright MIT and author/s of software                      */
+/* This is unreleased BETA code. no permission is granted or   */
+/* implied to use, copy, modify, and distribute this software  */
+/* except by the author(s), or those designated by the author. */
 /***************************************************************/
 
 
@@ -21,16 +21,16 @@ ProtobufClient::ProtobufClient()
 
 void ProtobufClient::ToGatewayCallback(const protobuf_client::Gateway &msg)
 {
-  // transform msg data to protobuf 
+  // transform msg data to protobuf
   moos::gateway::ToGateway to_gateway;
   ros::Time time = ros::Time::now();
   to_gateway.set_client_time(time.toSec());
   to_gateway.set_client_key(msg.gateway_key);
   to_gateway.set_client_string(msg.gateway_string);
   to_gateway.set_client_double(msg.gateway_double);
-  
+
   //ROS_INFO("Client Key: %s", msg.gateway_key.c_str());
-    
+
   // send to MOOS
   if(client_->connected())
   {
@@ -112,7 +112,7 @@ void ProtobufClient::InitRosIO(ros::NodeHandle &in_private_nh)
 
   // Define handles for interface messages
   IngestGatewayMsg();
-  
+
   // init subscriptions
   //sub_to_gateway_ = nh_.subscribe("/send_to_gateway", 100, &ProtobufClient::ToGatewayCallback, this);
   sub_to_gateway_ = nh_.subscribe(send_to_gateway_, 100, &ProtobufClient::ToGatewayCallback, this);
@@ -131,14 +131,14 @@ void ProtobufClient::Iterate()
     ROS_INFO("Disconnected from Gateway...");
     // Try to reconnect
     client_->connect(gateway_ip_, gateway_port_);
-    try                                                                                             
-    {                                                                                                   
-      io_.poll();                                                                                       
-    }                                                                                                   
-    catch(boost::system::error_code & ec)                                                               
-    {                                                                                                   
-      ROS_INFO("Looping until connected to gateway. Error ");                                         
-      std::cout << ec << std::endl;                                                                   
+    try
+    {
+      io_.poll();
+    }
+    catch(boost::system::error_code & ec)
+    {
+      ROS_INFO("Looping until connected to gateway. Error ");
+      std::cout << ec << std::endl;
     }
   }
 }
@@ -158,7 +158,6 @@ void ProtobufClient::Run()
     loop_rate.sleep();
   }
 
-  
 }
 
 ProtobufClient::~ProtobufClient()
